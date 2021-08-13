@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        *{
+            margin: 0px;
+            padding:0px;
+            box-sizing:border-box;
+        }
+        body{
+            overflow: hidden;
+            min-height: 78vh;
+            background-color:#000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3rem 0;
+        }
+        .quiz-container{
+            border-radius: 3px;
+            width: 45%;
+            max-width:100%;
+            background-color: whitesmoke;
+        }
+        .quiz-head{
+            padding:3rem;
+        }
+        ul{
+            padding: 12px 0;
+            line-height: 31px;          
+            list-style: none;
+        }
+        button{
+            cursor: pointer;
+            padding: 1rem;
+            font-size: 2rem;
+            max-width:100%;
+            width: 100%;            
+            display: block;
+            background-color: hsl(202, 71%, 23%);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <div class="quiz-head">
+            <h1 id="hello">hello pop</h1>
+        <ul>
+            <li>
+                <input type="radio" name="answer" id="a" class="hero">
+                <label id="hello1">Question</label>
+            </li>
+            <li>
+                <input type="radio" name="answer" id="b" class="hero">
+                <label id="hello2">Question</label>
+            </li>
+            <li>
+                <input type="radio" name="answer" id="c" class="hero">
+                <label  id="hello3">Question</label>
+            </li>
+            <li>
+                <input type="radio" name="answer" id="d" class="hero">
+                <label  id="hello4">Question</label>
+            </li>
+        </ul>
+        </div>
+        <button id="btn">submit</button>
+    </div>
+    <script>
+        const QuizQuestion=[
+            {
+                question:"who is the president of Nigeria",
+                a:"Buhari",
+                b:"Tinubu",
+                c:"johnathan",
+                d:"atiku",
+                correct:"a"
+            },
+            {
+                question:"how old is james",
+                a:"4",
+                b:"5",
+                c:"12",
+                d:"10",
+                correct:"b"
+            },
+            {
+                question:"what is the best programming language",
+                a:"java",
+                b:"python",
+                c:"c",
+                d:"javascript",
+                correct:"d"
+            },
+            {
+                question:"how much is the book",
+                a:"4",
+                b:"32",
+                c:"62",
+                d:"40",
+                correct:"c"
+            },
+            {
+                question:"who is  the president of american",
+                a:"donald",
+                b:"john",
+                c:"chad",
+                d:"james",
+                correct:"a"
+            },
+        ]
+        const hello=document.getElementById("hello")
+        const hello1=document.getElementById("hello1")
+        const hello2=document.getElementById("hello2")
+        const hello3=document.getElementById("hello3")
+        const hello4=document.getElementById("hello4")
+        const button=document.getElementById("btn")
+        const heros=document.querySelectorAll(".hero")
+        const quiz=document.getElementById("quiz")
+        let score=0      
+        let fas=undefined
+        console.log(heros)
+       let call=0
+       cap()
+       function cap() {
+           let camp=QuizQuestion[call]
+           console.log(camp)
+           hello.innerText=camp.question
+           hello1.innerText=camp.a
+           hello2.innerText=camp.b
+           hello3.innerText=camp.c
+           hello4.innerText=camp.d
+       }
+       function tab() {
+           let card= QuizQuestion[call]
+           let wet=card.correct
+        heros.forEach(hero => {
+           if(hero.checked){
+               fas=hero.id;
+           }
+           return fas          
+        });
+        if (fas){
+         call++
+        }
+        if (fas===wet){
+            score++
+        }
+       console.log(fas)
+    }
+    function deselect() {
+        heros.forEach(hero => {
+           if(hero.checked){
+               hero.checked=false
+           }
+                 
+        });
+    }
+       button.addEventListener("click",function(){ 
+           tab()
+         if(call > QuizQuestion.length-1){
+            quiz.innerHTML=`<h2>you got ${score}/${QuizQuestion.length} correctly</h2>`
+         }
+         cap()
+         deselect()
+       })
+    </script>  
+</body>
+</html>
